@@ -1,0 +1,52 @@
+CREATE TABLE my_employees(
+    employee_id NUMBER(3) NOT NULL,
+    first_name VARCHAR2(50) DEFAULT 'No name',
+    last_name VARCHAR2(50),
+    hire_date DATE DEFAULT sysdate NOT NULL
+)
+
+SELECT * FROM my_employees;
+
+ALTER TABLE my_employees
+ADD phone_number VARCHAR(20); 
+
+ALTER TABLE my_employees
+MODIFY phone_number VARCHAR(30);
+
+ALTER TABLE my_employees
+DROP COLUMN phone_number;
+
+--DROP TABLE
+DROP TABLE my_employees;
+FLASHBACK TABLE my_employees TO BEFORE DROP;
+
+/*o FLASHBACK não funcionará se no momento do drop, tiver o PURGE (EX. DROP TABLE my_employees PURGE), 
+pois será excluído permanentemente*/
+
+--RENAME 
+ALTER TABLE my_employees 
+RENAME COLUMN hire_date TO start_date;
+
+--Renomear tabela
+RENAME my_employees TO all_employees;
+
+SELECT * FROM all_employees;
+
+INSERT INTO all_employees values (12, 'Marcos', 'Vinicius', sysdate);
+INSERT INTO  all_employees values (13, 'Marcos', 'Silva', sysdate);
+select * from all_employees;
+
+
+DELETE all_employees WHERE employee_id = 12;
+COMMIT;
+ROLLBACK;
+
+
+--Constraints
+
+
+
+
+
+
+
